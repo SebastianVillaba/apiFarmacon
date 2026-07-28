@@ -3,6 +3,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
+// Importar middleware de autenticación por API Key
+import { apiKeyAuth } from './middlewares';
+
 // Importar rutas
 import apiRoutes from './routes/index';
 
@@ -20,7 +23,7 @@ app.use(helmet());
 app.use(cors({
     origin: '*', // Configurar según necesidad
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key', 'X-API-Key']
 }));
 
 // Logger de solicitudes HTTP
@@ -36,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 // RUTAS
 // ============================================================
 
-// Ruta de health check
+// Ruta de health check (pública)
 app.get('/health', (req: Request, res: Response) => {
     res.status(200).json({
         status: 'OK',
@@ -44,8 +47,8 @@ app.get('/health', (req: Request, res: Response) => {
     });
 });
 
-// Rutas de la API
-app.use('/api', apiRoutes);
+// Rutas de la API (protegidas por API Key)
+app.use('/api', apiKeyAuth, apiRoutes);
 
 // ============================================================
 // MANEJO DE ERRORES

@@ -337,8 +337,32 @@ La API estará disponible en: `http://localhost:3000`
 
 ### Endpoints disponibles:
 
-- `GET /health` - Health check
-- `GET /api` - Información de la API
+- `GET /health` - Health check (Público, sin API Key)
+- `GET /api` - Información de la API (Protegido por API Key)
+- `GET /api/productos` - Lista de productos (Protegido por API Key)
+
+---
+
+## 🔑 Autenticación por API Key
+
+Todas las rutas bajo `/api/*` están protegidas por el middleware `apiKeyAuth`. Para realizar peticiones exitosas, debes incluir tu `API_KEY` en los encabezados HTTP o como parámetro de consulta.
+
+### Formas de enviar la API Key:
+
+1. **Header HTTP `x-api-key` (Recomendado)**:
+   ```bash
+   curl -H "x-api-key: tu_api_key" http://localhost:5000/api/productos
+   ```
+
+2. **Header HTTP `Authorization`**:
+   ```bash
+   curl -H "Authorization: Bearer tu_api_key" http://localhost:5000/api/productos
+   ```
+
+3. **Query Parameter**:
+   ```bash
+   curl "http://localhost:5000/api/productos?api_key=tu_api_key"
+   ```
 
 ---
 
@@ -352,3 +376,4 @@ La API estará disponible en: `http://localhost:3000`
 ---
 
 ¡Proyecto listo para desarrollar! 🚀
+

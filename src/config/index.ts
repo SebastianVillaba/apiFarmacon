@@ -35,7 +35,10 @@ export const config = {
     // CORS
     cors: {
         origin: process.env.CORS_ORIGIN || '*',
-    }
+    },
+
+    // Seguridad API Key
+    apiKey: process.env.API_KEY || ''
 };
 
 export default config;
