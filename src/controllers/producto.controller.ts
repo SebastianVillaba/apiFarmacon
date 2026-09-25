@@ -169,3 +169,4 @@ export const getProductos = async (req: Request, res: Response): Promise<void> =
         });
     }
 };
+

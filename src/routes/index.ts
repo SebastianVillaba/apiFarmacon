@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 // Importar rutas específicas
 import productoRoutes from './producto.routes';
+import cotizacionRoutes from './cotizacion.routes';
 
 const router = Router();
 
@@ -11,6 +12,9 @@ const router = Router();
 
 // Rutas de productos
 router.use('/productos', productoRoutes);
+
+// Rutas de cotizaciones
+router.use('/cotizacion', cotizacionRoutes);
 
 // Ruta de prueba
 router.get('/', (req, res) => {

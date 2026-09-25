@@ -340,6 +340,7 @@ La API estará disponible en: `http://localhost:3000`
 - `GET /health` - Health check (Público, sin API Key)
 - `GET /api` - Información de la API (Protegido por API Key)
 - `GET /api/productos` - Lista de productos (Protegido por API Key)
+- `GET /api/cotizacion` - Cotización de compra por moneda (Protegido por API Key)
 
 ---
 
